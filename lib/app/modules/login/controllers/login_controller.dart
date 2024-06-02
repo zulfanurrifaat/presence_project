@@ -21,21 +21,43 @@ class LoginController extends GetxController {
 
         if (userCredential.user != null) {
           if (userCredential.user!.emailVerified == true) {
-            Get.offAllNamed(Routes.HOME);
+            if (passC.text == "password") {
+              Get.offAllNamed(Routes.NEW_PASSWORD);
+            } else {
+              Get.offAllNamed(Routes.HOME);
+            }
           } else {
             Get.defaultDialog(
               title: "Belum verifikasi",
               middleText:
                   "Kamu belum verifikasi di email ini. Lakukan verifikasi di email kamu.",
+              actions: [
+                OutlinedButton(
+                  onPressed: () => Get.back(),
+                  child: Text("CANCEL"),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    try {
+                      await userCredential.user!.sendEmailVerification();
+                      Get.back();
+                      Get.snackbar("Berhasil",
+                          "Kami telah berhasil mengirim email verifikasi ke akun kamu");
+                    } catch (e) {
+                      Get.snackbar("Terjadi kesalahan",
+                          "Tidak dapat mengirim email verifikasi. Hubungi admin atau customer service");
+                    }
+                  },
+                  child: Text("KIRIM ULANG"),
+                ),
+              ],
             );
           }
         }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           Get.snackbar("Terjadi kesalahan", "Email tidak terdaftar");
-          print('No user found for that email');
         } else if (e.code == 'wrong-password') {
-          print('Wrong password provided for that user.');
           Get.snackbar("Terjadi kesalahan", "Password salah");
         }
       } catch (e) {
