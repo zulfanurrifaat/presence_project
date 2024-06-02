@@ -18,7 +18,7 @@ void main() async {
       tools: const [...DevicePreview.defaultTools],
       builder: (context) => GetMaterialApp(
         title: "Application",
-        initialRoute: Routes.HOME,
+        initialRoute: Routes.LOGIN,
         getPages: AppPages.routes,
       ),
     ),
