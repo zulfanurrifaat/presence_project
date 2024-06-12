@@ -28,11 +28,11 @@ class NewPasswordController extends GetxController {
           }
         } catch (e) {
           Get.snackbar("Terjadi kesalahan",
-              "Password telalu lemah, tidak dapat membuat password baru. Hubungi admin atau customer service");
+              "Tidak dapat membuat password baru. Hubungi admin / customer service");
         }
       } else {
-        Get.snackbar(
-            "Terjadi Kesalahan", "Password baru harus diubah tidak boleh sama");
+        Get.snackbar("Terjadi Kesalahan",
+            "Password baru harus diubah, jangan 'password' kembali");
       }
     } else {
       Get.snackbar("Terjadi Kesalahan", "Password baru wajib diisi");
