@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
+import 'package:presence/app/routes/app_pages.dart';
 
 import '../controllers/profile_controller.dart';
 
@@ -55,18 +56,21 @@ class ProfileView extends GetView<ProfileController> {
                 ),
                 SizedBox(height: 20),
                 ListTile(
-                  onTap: () {},
+                  onTap: () =>
+                      Get.toNamed(Routes.UPDATE_PROFILE, arguments: user),
                   leading: Icon(Icons.person),
                   title: Text("Update Profile"),
                 ),
                 ListTile(
-                  onTap: () {},
+                  onTap: () => Get.toNamed(
+                    Routes.UPDATE_PASSWORD,
+                  ),
                   leading: Icon(Icons.vpn_key),
                   title: Text("Update Password"),
                 ),
                 if (user["role"] == "admin")
                   ListTile(
-                    onTap: () {},
+                    onTap: () => Get.toNamed(Routes.ADD_PEGAWAI),
                     leading: Icon(Icons.person_add),
                     title: Text("Add Pegawai"),
                   ),
