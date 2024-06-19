@@ -19,8 +19,8 @@ class AddPegawaiController extends GetxController {
       isLoadingAddPegawai.value = true;
       try {
         String emailAdmin = auth.currentUser!.email!;
-        UserCredential userCredentialAdmin =
-            await auth.signInWithEmailAndPassword(
+
+        await auth.signInWithEmailAndPassword(
           email: emailAdmin,
           password: passAdminC.text,
         );
@@ -37,6 +37,7 @@ class AddPegawaiController extends GetxController {
             "name": nameC.text,
             "email": emailC.text,
             "uid": uid,
+            "role": "pegawai",
             "createdAt": DateTime.now().toIso8601String(),
           });
 
@@ -44,8 +45,7 @@ class AddPegawaiController extends GetxController {
 
           await auth.signOut();
 
-          UserCredential userCredentialAdmin =
-              await auth.signInWithEmailAndPassword(
+          await auth.signInWithEmailAndPassword(
             email: emailAdmin,
             password: passAdminC.text,
           );
