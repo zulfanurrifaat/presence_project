@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:get/get.dart';
 import 'package:presence/app/routes/app_pages.dart';
-
+import '../../../controllers/page_index_controller.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  const ProfileView({Key? key}) : super(key: key);
+  ProfileView({Key? key}) : super(key: key);
+  final pageC = Get.find<PageIndexController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,10 +21,12 @@ class ProfileView extends GetView<ProfileController> {
         stream: controller.streamUser(),
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.waiting) {
-            Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator());
           }
           if (snap.hasData) {
             Map<String, dynamic> user = snap.data!.data()!;
+            String defaultImage =
+                "https://ui-avatars.com/api/?name=${user['name']}";
             return ListView(
               padding: EdgeInsets.all(20),
               children: [
@@ -35,7 +38,11 @@ class ProfileView extends GetView<ProfileController> {
                         width: 100,
                         height: 100,
                         child: Image.network(
-                          "https://ui-avatars.com/api/?name=${user['name']}",
+                          user["profile"] != null
+                              ? user["profile"] != ""
+                                  ? user["profile"]
+                                  : defaultImage
+                              : defaultImage,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -87,6 +94,16 @@ class ProfileView extends GetView<ProfileController> {
             );
           }
         },
+      ),
+      bottomNavigationBar: ConvexAppBar(
+        style: TabStyle.fixedCircle,
+        items: [
+          TabItem(icon: Icons.home, title: 'Home'),
+          TabItem(icon: Icons.fingerprint, title: 'Add'),
+          TabItem(icon: Icons.people, title: 'Profile'),
+        ],
+        initialActiveIndex: pageC.PageIndex.value,
+        onTap: (int i) => pageC.changedPage(i),
       ),
     );
   }

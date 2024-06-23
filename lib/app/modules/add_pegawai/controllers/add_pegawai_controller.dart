@@ -7,6 +7,7 @@ class AddPegawaiController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isLoadingAddPegawai = false.obs;
   TextEditingController nameC = TextEditingController();
+  TextEditingController prodiC = TextEditingController();
   TextEditingController nipC = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController passAdminC = TextEditingController();
@@ -35,6 +36,7 @@ class AddPegawaiController extends GetxController {
           await firestore.collection("pegawai").doc(uid).set({
             "nip": nipC.text,
             "name": nameC.text,
+            "job": prodiC.text,
             "email": emailC.text,
             "uid": uid,
             "role": "pegawai",
@@ -80,6 +82,7 @@ class AddPegawaiController extends GetxController {
 
   Future<void> addPegawai() async {
     if (nameC.text.isNotEmpty &&
+        prodiC.text.isNotEmpty &&
         nipC.text.isNotEmpty &&
         emailC.text.isNotEmpty) {
       isLoading.value = true;
@@ -123,7 +126,8 @@ class AddPegawaiController extends GetxController {
         ],
       );
     } else {
-      Get.snackbar("Terjadi Kesalahan", "NIP, Nama. dan email harus diisi.");
+      Get.snackbar(
+          "Terjadi Kesalahan", "NIP, nama, job dan email harus diisi.");
     }
   }
 }

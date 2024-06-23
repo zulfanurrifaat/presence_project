@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,7 +10,7 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
   final Map<String, dynamic> user = Get.arguments;
   @override
   Widget build(BuildContext context) {
-    controller.nipC.text = user["nip"];
+    controller.nimC.text = user["nim"];
     controller.nameC.text = user["name"];
     controller.emailC.text = user["email"];
     return Scaffold(
@@ -22,9 +24,9 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
           TextField(
             readOnly: true,
             autocorrect: false,
-            controller: controller.nipC,
+            controller: controller.nimC,
             decoration: InputDecoration(
-              labelText: "NIP",
+              labelText: "NIM",
               border: OutlineInputBorder(),
             ),
           ),
@@ -50,6 +52,66 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
               labelText: "Name",
               border: OutlineInputBorder(),
             ),
+          ),
+          SizedBox(height: 20),
+          Text(
+            "Photo Profile",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GetBuilder<UpdateProfileController>(
+                builder: (c) {
+                  if (c.image != null) {
+                    return ClipOval(
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        child: Image.file(
+                          File(c.image!.path),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  } else {
+                    if (user["profile"] != null) {
+                      return Column(
+                        children: [
+                          ClipOval(
+                            child: Container(
+                              height: 100,
+                              width: 100,
+                              child: Image.network(
+                                user["profile"],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              controller.deleteProfile(user["uid"]);
+                            },
+                            child: Text("delete"),
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Text("no image ");
+                    }
+                  }
+                },
+              ),
+              TextButton(
+                onPressed: () {
+                  controller.pickImage();
+                },
+                child: Text("choose"),
+              ),
+            ],
           ),
           SizedBox(height: 30),
           Obx(
