@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presence/app/routes/app_pages.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -51,6 +52,13 @@ class LoginView extends GetView<LoginController> {
             child: Text("Lupa password ?"),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await FirebaseAuth.instance.signOut();
+          Get.offAllNamed(Routes.START);
+        },
+        child: Icon(Icons.arrow_back),
       ),
     );
   }

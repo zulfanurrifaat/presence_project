@@ -21,7 +21,7 @@ class UpdatePasswordView extends GetView<UpdatePasswordController> {
             autocorrect: false,
             obscureText: true,
             decoration: InputDecoration(
-              labelText: "Curent Password",
+              labelText: "Password saat ini",
               border: OutlineInputBorder(),
             ),
           ),
@@ -31,7 +31,7 @@ class UpdatePasswordView extends GetView<UpdatePasswordController> {
             autocorrect: false,
             obscureText: true,
             decoration: InputDecoration(
-              labelText: "New Password",
+              labelText: "Password baru",
               border: OutlineInputBorder(),
             ),
           ),
@@ -41,7 +41,7 @@ class UpdatePasswordView extends GetView<UpdatePasswordController> {
             autocorrect: false,
             obscureText: true,
             decoration: InputDecoration(
-              labelText: "Confirm New Password",
+              labelText: "Konfirmasi password baru",
               border: OutlineInputBorder(),
             ),
           ),
@@ -54,7 +54,7 @@ class UpdatePasswordView extends GetView<UpdatePasswordController> {
                 }
               },
               child: Text((controller.isLoading.isFalse)
-                  ? "CHANGE PASSWORD"
+                  ? "UBAH PASSWORD"
                   : "LOADING..."),
             ),
           ),

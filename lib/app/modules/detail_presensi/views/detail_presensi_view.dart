@@ -6,9 +6,12 @@ import 'package:intl/intl.dart';
 import '../controllers/detail_presensi_controller.dart';
 
 class DetailPresensiView extends GetView<DetailPresensiController> {
-  const DetailPresensiView({Key? key}) : super(key: key);
+  final Map<String, dynamic> data = Get.arguments;
+
+  DetailPresensiView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    print(data);
     return Scaffold(
         appBar: AppBar(
           title: const Text('DETAIL PRESENSI'),
@@ -24,7 +27,7 @@ class DetailPresensiView extends GetView<DetailPresensiController> {
                 children: [
                   Center(
                     child: Text(
-                      "${DateFormat.yMMMMEEEEd().format(DateTime.now())}",
+                      "${DateFormat.yMMMMEEEEd().format(DateTime.parse(data['date']))}",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 17,
@@ -37,13 +40,19 @@ class DetailPresensiView extends GetView<DetailPresensiController> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "Jam : ${DateFormat.jms().format(DateTime.now())}",
+                    "Jam : ${DateFormat.jms().format(DateTime.parse(data['masuk']!['date']))}",
                   ),
                   Text(
-                    "Posisi : -6.32436 , 192.7643645",
+                    "Posisi : ${data['masuk']!['lat']} ,${data['masuk']!['long']}",
                   ),
                   Text(
-                    "Status : Di dalam area",
+                    "Status : ${data['masuk']!['status']}",
+                  ),
+                  Text(
+                    "Distance : ${data['masuk']!['distance'].toString().split(".").first} meter",
+                  ),
+                  Text(
+                    "Address : ${data['masuk']!['address']}",
                   ),
                   SizedBox(height: 20),
                   Text(
@@ -51,13 +60,30 @@ class DetailPresensiView extends GetView<DetailPresensiController> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "Jam : ${DateFormat.jms().format(DateTime.now())}",
+                    data['keluar']?['date'] == null
+                        ? "Jam: -"
+                        : "Jam : ${DateFormat.jms().format(DateTime.parse(data['keluar']!['date']))}",
                   ),
                   Text(
-                    "Posisi : -6.32436 , 192.7643645",
+                    data['keluar']?['lat'] == null &&
+                            data['keluar']?['long'] == null
+                        ? "Posisi: -"
+                        : "Posisi : ${data['keluar']!['lat']} ,${data['keluar']!['long']}",
                   ),
                   Text(
-                    "Status : Di dalam area",
+                    data['keluar']?['status'] == null
+                        ? "Status: -"
+                        : "Status : ${data['keluar']!['status']}",
+                  ),
+                  Text(
+                    data['keluar']?['distance'] == null
+                        ? "Distance: -"
+                        : "Distance : ${data['keluar']!['distance'].toString().split(".").first} meter",
+                  ),
+                  Text(
+                    data['keluar']?['address'] == null
+                        ? "Address: -"
+                        : "Address : ${data['keluar']!['address']}",
                   ),
                 ],
               ),

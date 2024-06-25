@@ -8,7 +8,7 @@ class AddPegawaiController extends GetxController {
   RxBool isLoadingAddPegawai = false.obs;
   TextEditingController nameC = TextEditingController();
   TextEditingController prodiC = TextEditingController();
-  TextEditingController nipC = TextEditingController();
+  TextEditingController nimC = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController passAdminC = TextEditingController();
 
@@ -34,9 +34,9 @@ class AddPegawaiController extends GetxController {
           String uid = pegawaiCredential.user!.uid;
 
           await firestore.collection("pegawai").doc(uid).set({
-            "nip": nipC.text,
+            "nim": nimC.text,
             "name": nameC.text,
-            "job": prodiC.text,
+            "prodi": prodiC.text,
             "email": emailC.text,
             "uid": uid,
             "role": "pegawai",
@@ -83,7 +83,7 @@ class AddPegawaiController extends GetxController {
   Future<void> addPegawai() async {
     if (nameC.text.isNotEmpty &&
         prodiC.text.isNotEmpty &&
-        nipC.text.isNotEmpty &&
+        nimC.text.isNotEmpty &&
         emailC.text.isNotEmpty) {
       isLoading.value = true;
       Get.defaultDialog(
@@ -119,8 +119,9 @@ class AddPegawaiController extends GetxController {
                 }
                 isLoading.value = false;
               },
-              child: Text(
-                  isLoadingAddPegawai.isFalse ? "ADD PEGAWAI" : "LOADING..."),
+              child: Text(isLoadingAddPegawai.isFalse
+                  ? "TAMBAH PEGAWAI"
+                  : "LOADING..."),
             ),
           ),
         ],

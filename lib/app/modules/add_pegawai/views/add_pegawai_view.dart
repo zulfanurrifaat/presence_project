@@ -10,7 +10,7 @@ class AddPegawaiView extends GetView<AddPegawaiController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ADD PEGAWAI'),
+        title: const Text('TAMBAH PEGAWAI'),
         centerTitle: true,
       ),
       body: ListView(
@@ -18,31 +18,9 @@ class AddPegawaiView extends GetView<AddPegawaiController> {
         children: [
           TextField(
             autocorrect: false,
-            controller: controller.nipC,
-            decoration: InputDecoration(
-              labelText: "NIM",
-              border: OutlineInputBorder(),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          TextField(
-            autocorrect: false,
             controller: controller.nameC,
             decoration: InputDecoration(
               labelText: "Name",
-              border: OutlineInputBorder(),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          TextField(
-            autocorrect: false,
-            controller: controller.prodiC,
-            decoration: InputDecoration(
-              labelText: "Prodi",
               border: OutlineInputBorder(),
             ),
           ),
@@ -57,6 +35,28 @@ class AddPegawaiView extends GetView<AddPegawaiController> {
               border: OutlineInputBorder(),
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
+          TextField(
+            autocorrect: false,
+            controller: controller.nimC,
+            decoration: InputDecoration(
+              labelText: "NIM",
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          TextField(
+            autocorrect: false,
+            controller: controller.prodiC,
+            decoration: InputDecoration(
+              labelText: "Prodi",
+              border: OutlineInputBorder(),
+            ),
+          ),
           SizedBox(height: 30),
           Obx(
             () => ElevatedButton(
@@ -65,8 +65,9 @@ class AddPegawaiView extends GetView<AddPegawaiController> {
                   await controller.addPegawai();
                 }
               },
-              child: Text(
-                  controller.isLoading.isFalse ? "ADD PEGAWAI" : "LOADING..."),
+              child: Text(controller.isLoading.isFalse
+                  ? "TAMBAH PEGAWAI"
+                  : "LOADING..."),
             ),
           ),
         ],

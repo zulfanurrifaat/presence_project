@@ -16,6 +16,10 @@ import '../modules/new_password/bindings/new_password_binding.dart';
 import '../modules/new_password/views/new_password_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/registration/bindings/registration_binding.dart';
+import '../modules/registration/views/registration_view.dart';
+import '../modules/start/bindings/start_binding.dart';
+import '../modules/start/views/start_view.dart';
 import '../modules/update_password/bindings/update_password_binding.dart';
 import '../modules/update_password/views/update_password_view.dart';
 import '../modules/update_profile/bindings/update_profile_binding.dart';
@@ -73,13 +77,23 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DETAIL_PRESENSI,
-      page: () => const DetailPresensiView(),
+      page: () => DetailPresensiView(),
       binding: DetailPresensiBinding(),
     ),
     GetPage(
       name: _Paths.ALL_PRESENSI,
       page: () => const AllPresensiView(),
       binding: AllPresensiBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGISTRATION,
+      page: () => const RegistrationView(),
+      binding: RegistrationBinding(),
+    ),
+    GetPage(
+      name: _Paths.START,
+      page: () => const StartView(),
+      binding: StartBinding(),
     ),
   ];
 }

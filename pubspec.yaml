@@ -8,20 +8,29 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.6
   get: 4.6.6
-  firebase_core: 2.32.0
-  firebase_auth: 4.20.0
-  cloud_firestore: 4.17.5
-  firebase_storage: 11.7.7
-  device_preview: 1.1.0
+  firebase_core: ^3.1.1
+  firebase_auth: ^5.1.1
+  cloud_firestore: ^5.0.2
+  firebase_storage: ^12.1.0
   image_picker: 1.1.2
   convex_bottom_bar: 3.2.0
-  intl: 0.18.1
+  intl: ^0.19.0
   geolocator: 12.0.0
+  geocoding: 3.0.0
+  syncfusion_flutter_datepicker: 26.1.39
+  
   flutter: 
     sdk: flutter
 
-dev_dependencies: 
-  flutter_lints: 4.0.0
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon.png"
+  min_sdk_android: 21
+  
+dev_dependencies:
+  flutter_launcher_icons: "^0.13.1" 
+  flutter_lints: ^4.0.0
   flutter_test: 
     sdk: flutter
 

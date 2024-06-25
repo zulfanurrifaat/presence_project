@@ -95,12 +95,12 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
                             onPressed: () {
                               controller.deleteProfile(user["uid"]);
                             },
-                            child: Text("delete"),
+                            child: Text("hapus"),
                           ),
                         ],
                       );
                     } else {
-                      return Text("no image ");
+                      return Text("tidak ada foto");
                     }
                   }
                 },
@@ -109,7 +109,7 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
                 onPressed: () {
                   controller.pickImage();
                 },
-                child: Text("choose"),
+                child: Text("pilih foto"),
               ),
             ],
           ),

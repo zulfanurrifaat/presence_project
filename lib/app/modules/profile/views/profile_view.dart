@@ -79,7 +79,7 @@ class ProfileView extends GetView<ProfileController> {
                   ListTile(
                     onTap: () => Get.toNamed(Routes.ADD_PEGAWAI),
                     leading: Icon(Icons.person_add),
-                    title: Text("Add Pegawai"),
+                    title: Text("Tambah Pegawai"),
                   ),
                 ListTile(
                   onTap: () => controller.logout(),
