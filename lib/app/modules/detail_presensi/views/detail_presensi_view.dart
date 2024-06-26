@@ -88,8 +88,9 @@ class DetailPresensiView extends GetView<DetailPresensiController> {
                 ],
               ),
               decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(20),
-                color: Colors.grey[200],
+                color: Colors.white,
               ),
             ),
           ],

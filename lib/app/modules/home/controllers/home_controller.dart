@@ -11,6 +11,7 @@ class HomeController extends GetxController {
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> streamUser() async* {
     String uid = auth.currentUser!.uid;
+    print("controller---$uid");
 
     yield* firestore.collection("pegawai").doc(uid).snapshots();
   }

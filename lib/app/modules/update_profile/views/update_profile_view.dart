@@ -10,9 +10,10 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
   final Map<String, dynamic> user = Get.arguments;
   @override
   Widget build(BuildContext context) {
-    controller.nimC.text = user["nim"];
+    controller.nimC.text = user["nim"].toString();
     controller.nameC.text = user["name"];
     controller.emailC.text = user["email"];
+    String defaultImage = "https://ui-avatars.com/api/?name=${user['name']}";
     return Scaffold(
       appBar: AppBar(
         title: const Text('UPDATE PROFILE'),
@@ -22,7 +23,7 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
         padding: EdgeInsets.all(20),
         children: [
           TextField(
-            readOnly: true,
+            // readOnly: true,
             autocorrect: false,
             controller: controller.nimC,
             decoration: InputDecoration(
@@ -86,7 +87,11 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
                               height: 100,
                               width: 100,
                               child: Image.network(
-                                user["profile"],
+                                user["profile"] != null
+                                    ? user["profile"] != ""
+                                        ? user["profile"]
+                                        : defaultImage
+                                    : defaultImage,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -118,7 +123,7 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
             () => ElevatedButton(
               onPressed: () async {
                 if (controller.isLoading.isFalse) {
-                  await controller.updateProfile(user["uid"]);
+                  await controller.updateProfile();
                 }
               },
               child: Text(controller.isLoading.isFalse

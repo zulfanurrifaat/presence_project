@@ -66,7 +66,7 @@ class AddPegawaiController extends GetxController {
               "Pegawai sudah ada. Kamu tidak dapat menambahkan pegawai dengan email ini");
         } else if (e.code == 'wrong-password') {
           Get.snackbar("Terjadi Kesalahan",
-              " Admin tidak dapat login. Password salah !");
+              " Pegawai tidak dapat login. Password salah !");
         } else {
           Get.snackbar("Terjadi Kesalahan", "${e.code}");
         }
@@ -87,10 +87,10 @@ class AddPegawaiController extends GetxController {
         emailC.text.isNotEmpty) {
       isLoading.value = true;
       Get.defaultDialog(
-        title: "Validasi admin",
+        title: "Validasi pegawai",
         content: Column(
           children: [
-            const Text("Masukan password untuk validasi admin !"),
+            const Text("Masukan password untuk validasi pegawai !"),
             SizedBox(height: 10),
             TextField(
               controller: passAdminC,

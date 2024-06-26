@@ -97,6 +97,7 @@ class ProfileView extends GetView<ProfileController> {
       ),
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.fixedCircle,
+        backgroundColor: Colors.purple,
         items: [
           TabItem(icon: Icons.home, title: 'Home'),
           TabItem(icon: Icons.fingerprint, title: 'Add'),

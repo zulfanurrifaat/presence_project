@@ -42,7 +42,7 @@ class AllPresensiView extends GetView<AllPresensiController> {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 20),
                   child: Material(
-                    color: Colors.grey[200],
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                     child: InkWell(
                       onTap: () => Get.toNamed(
@@ -53,6 +53,7 @@ class AllPresensiView extends GetView<AllPresensiController> {
                       child: Container(
                         padding: EdgeInsets.all(20),
                         decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Column(

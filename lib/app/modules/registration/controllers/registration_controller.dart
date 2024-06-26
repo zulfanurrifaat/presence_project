@@ -15,12 +15,14 @@ class RegistrationController extends GetxController {
         password: password,
       );
       await userCred.user!.updateDisplayName(name);
-      await firestore.collection('admin').doc(userCred.user!.uid).set({
+      await firestore.collection('pegawai').doc(userCred.user!.uid).set({
         'name': name,
         'email': email,
+        'role': "admin",
         'createdAt': Timestamp.now(),
       });
       Get.snackbar("Sukses", "Registrasi admin berhasil");
+      Get.back();
       // Navigasi ke halaman lain jika diperlukan
       // Get.toNamed('/home');
     } on FirebaseAuthException catch (e) {
